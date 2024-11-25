@@ -3,7 +3,7 @@
 //                                                                    //  
 ////////////////////////////////////////////////////////////////////////
 
-import { correctObjects, incorrectObjects } from "./objects.js";
+import { trueSentences, falseSentences, objectsName } from "./objects.js";
 
 
 /**************************************************************************************/
@@ -44,6 +44,43 @@ function shuffle(array) {
 shuffle(objectsImages);
 
 /**************************************************************************************/
+
+const TOTAL_SENTENCES = 3;
+
+// Create function to get a new array with a random slice from other array
+function getRandomSlice(array, sliceSize) {
+  const arraySlice = [];
+
+  for (let i = 0; i < sliceSize; i++) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    const randomElem = array.splice(randomIndex, 1)[0];
+    arraySlice.push(randomElem);
+  }
+
+  return arraySlice;
+}
+
+const trueSentencesSlice = getRandomSlice(trueSentences, TOTAL_SENTENCES);
+const falseSentencesSlice = getRandomSlice(falseSentences, TOTAL_SENTENCES);
+
+const trueSentencesWithResponse = trueSentencesSlice.map((sentence) => {
+  return {
+    sentence: sentence,
+    correct_response: correctKey
+  }
+})
+
+const falseSentencesWithResponse = falseSentencesSlice.map((sentence) => {
+  return {
+    sentence: sentence,
+    correct_response: incorrectKey
+  }
+})
+
+const sentences = [...trueSentencesWithResponse, ...falseSentencesWithResponse];
+shuffle(sentences);
+
+
 /**************************************************************************************/
 
 /* Initialize jsPsych */
@@ -336,61 +373,59 @@ timeline.push(test_procedure);
 
 // /**************************************************************************************/
 
-// /* Instructions for faces presentation */
-// let instructionsFacesPresentation = {
-//   type: jsPsychHtmlKeyboardResponse,
-//   stimulus: `
-//     <p>Als Nächstes werden Sie eine Reihe von Gesichtern auf dem Bildschirm sehen.</p>
-//     </p></p>
-//     <p>Wenn Sie das Gesicht zuvor gesehen haben, drücken Sie '${correctKey.toUpperCase()}' (ja).</p>
-//     <p>Wenn Sie das Gesicht nicht gesehen haben, drücken Sie '${incorrectKey.toUpperCase()}' (nein).</p>
-//     <p>Drücken Sie eine beliebige Taste, um zu beginnen.<p>
-//   `,
-//   post_trial_gap: 500,
-// };
-// timeline.push(instructionsFacesPresentation);
+/* Instructions for sentence presentation */
+let instructionsSentencePresentation = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: `
+    <p>Als Nächstes werden Sie eine Reihe von Gesichtern auf dem Bildschirm sehen.</p>
+    </p></p>
+    <p>Wenn Sie das Gesicht zuvor gesehen haben, drücken Sie '${correctKey.toUpperCase()}' (ja).</p>
+    <p>Wenn Sie das Gesicht nicht gesehen haben, drücken Sie '${incorrectKey.toUpperCase()}' (nein).</p>
+    <p>Drücken Sie eine beliebige Taste, um zu beginnen.<p>
+  `,
+  post_trial_gap: 500,
+};
+timeline.push(instructionsSentencePresentation);
 
-// /* Create stimuli array for faces presentation */
-// let face_recognition_stimuli = recognitionFaces.map((face) => {
-//   return {
-//     stimulus: `
-//       <div class="imgs-container">
-//         <img class="person-img" src="${face.img}">
-//       </div>
-//       <div class="keys">
-//         <p class="${correctKey === 'a' ? 'left' : 'right'}">JA</p>
-//         <p class="${correctKey === 'a' ? 'right' : 'left'}">NEIN</p>
-//       </div>
-//     `,
-//     correct_response: face.correct_response
-//   };
-// });
+/* Create stimuli array for sentence presentation */
+let sentenceRecognitionStimuli = sentences.map((sentence) => {
+  return {
+    stimulus: `
+      <h3 class="sentence">${sentence.sentence}</h3>
+      <div class="keys">
+        <p class="${correctKey === 'a' ? 'left' : 'right'}">JA</p>
+        <p class="${correctKey === 'a' ? 'right' : 'left'}">NEIN</p>
+      </div>
+    `,
+    correct_response: sentence.correct_response
+  };
+});
 
-// /* Faces presentation trial */
-// let testFaces = {
-//   type: jsPsychHtmlKeyboardResponse,
-//   stimulus: jsPsych.timelineVariable("stimulus"),
-//   choices: ['a', 'l'],
-//   data: {
-//     task: "response faces test",
-//     correct_response: jsPsych.timelineVariable("correct_response"),
-//   },
-//   on_finish: function (data) {
-//     data.correct = jsPsych.pluginAPI.compareKeys(
-//       data.response,
-//       data.correct_response
-//     );
-//     data.correct_response_meaning = correctKey === data.correct_response ? "YES" : "NO";
-//   },
-// };
+/* Sentences presentation trial */
+let testSentences = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: jsPsych.timelineVariable("stimulus"),
+  choices: ['a', 'l'],
+  data: {
+    task: "response sentences test",
+    correct_response: jsPsych.timelineVariable("correct_response"),
+  },
+  on_finish: function (data) {
+    data.correct = jsPsych.pluginAPI.compareKeys(
+      data.response,
+      data.correct_response
+    );
+    data.correct_response_meaning = correctKey === data.correct_response ? "YES" : "NO";
+  },
+};
 
-// /* Test procedure: fixation + faces presentation */
-// let test_faces_procedure = {
-//   timeline: [fixation, testFaces],
-//   timeline_variables: face_recognition_stimuli,
-//   randomize_order: true, // Randomize faces order
-// };
-// timeline.push(test_faces_procedure);
+/* Test procedure: fixation + sentences presentation */
+let testSentencesProcedure = {
+  timeline: [fixation, testSentences],
+  timeline_variables: sentenceRecognitionStimuli,
+  randomize_order: true, // Randomize sentences order
+};
+timeline.push(testSentencesProcedure);
 
 
 // /**************************************************************************************/

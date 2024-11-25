@@ -1,260 +1,152 @@
-const IMG_URL =
-  "https://raw.githubusercontent.com/saramff/face-recognition-images/refs/heads/master/objects/";
-
-export const correctObjects = [
-  {
-    sentence: "hat eine Sparschwein.", //"has a piggy bank.",
-    img: `${IMG_URL}piggy-bank.jpg`
-  },
-  {
-    sentence: "hat einen Mülleimer.", //"has a trash can.",
-    img: `${IMG_URL}trash-can.jpg`
-  },
-  {
-    sentence: "hat ein Seil.", //"has a rope.",
-    img: `${IMG_URL}rope.jpg`
-  },
-  {
-    sentence: "hat einen Schlüssel.", //"has a key.",
-    img: `${IMG_URL}key.jpg`
-  },
-  {
-    sentence: "hat einen Regenschirm.", //"has an umbrella.",
-    img: `${IMG_URL}umbrella.jpg`
-  },
-  {
-    sentence: "hat eine Brille.", //"has glasses.",
-    img: `${IMG_URL}glasses.jpg`
-  },
-  {
-    sentence: "hat eine Banane.", //has a banana.",
-    img: `${IMG_URL}banana.jpg`
-  },
-  {
-    sentence: "hat einen Taschenrechner.", //"has a calculator.",
-    img: `${IMG_URL}calculator.jpg`
-  },
-  {
-    sentence: "hat eine Schere.", //"has scissors.",
-    img: `${IMG_URL}scissors.jpg`
-  },
-  {
-    sentence: "hat eine Haarbürste.", //"has a hairbrush.",
-    img: `${IMG_URL}hairbrush.jpg`
-  },
-  {
-    sentence: "hat eine Lupe.", 
-    img: `${IMG_URL}magnifying-glass.jpg`, 
-    correct_response: "a",
-  },
-  {
-    sentence: "hat ein Paar Stiefel.", //"has some boots.",
-    img: `${IMG_URL}boots.jpg`
-  },
-  { sentence: "hat eine Gitarre.", //"has a guitar.",
-    img: `${IMG_URL}guitar.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat Honig.", //"has honey.", 
-    img: `${IMG_URL}honey.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat ein Mikrofon.", //has a microphone.", 
-    img: `${IMG_URL}microphone.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Hammer.", //has a hammer.", 
-    img: `${IMG_URL}hammer.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat Milch.", //has milk.", 
-    img: `${IMG_URL}milk.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat ein Ei.", //has an egg.", 
-    img: `${IMG_URL}egg.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Hund.", //has a dog.", 
-    img: `${IMG_URL}dog.jpg`, 
-    correct_response: "a" },
-  { 
-    sentence: "hat eine Orange.", //has an orange.", 
-    img: `${IMG_URL}orange.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat Brot.", //has bread.", 
-    img: `${IMG_URL}bread.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat ein Fahrrad.", //has a bicycle.", 
-    img: `${IMG_URL}bicycle.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat Kaffee.", //has coffee.", 
-    img: `${IMG_URL}coffee.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Luftballon.", //has a balloon.", 
-    img: `${IMG_URL}balloon.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat eine Pizza.", //has a pizza.", 
-    img: `${IMG_URL}pizza.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat eine Ananas.", //has a pineapple.", 
-    img: `${IMG_URL}pineapple.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Bildschirm.", //has a screen.", 
-    img: `${IMG_URL}screen.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Ball.", //has a ball.", 
-    img: `${IMG_URL}ball.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Schmetterling.", //has a butterfly.", 
-    img: `${IMG_URL}butterfly.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat Schokolade.", //has chocolate.", 
-    img: `${IMG_URL}chocolate.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat eine Münze.", //has a coin.", 
-    img: `${IMG_URL}coin.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Bleistift.", //has a pencil.", 
-    img: `${IMG_URL}pencil.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Stuhl.", //has a chair.", 
-    img: `${IMG_URL}chair.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Gürtel.", //has a belt.", 
-    img: `${IMG_URL}belt.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Löffel.", //has a spoon.", 
-    img: `${IMG_URL}spoon.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Hut.", //has a hat.", 
-    img: `${IMG_URL}hat.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat Käse.", //has cheese.", 
-    img: `${IMG_URL}cheese.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Blumentopf.", //has a flowerpot.", 
-    img: `${IMG_URL}flowerpot.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Milchshake.", //has a milkshake.", 
-    img: `${IMG_URL}milkshake.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat eine Blume.", //has a flower.", 
-    img: `${IMG_URL}flower.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat eine Armbanduhr.", //has a watch.", 
-    img: `${IMG_URL}watch.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat eine Tomate.", //has a tomato.", 
-    img: `${IMG_URL}tomato.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Kürbis.", //has a pumpkin.", 
-    img: `${IMG_URL}pumpkin.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Würfel.", //has a dice.", 
-    img: `${IMG_URL}dice.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat eine Gießkanne.", //has a watering can.", 
-    img: `${IMG_URL}watering-can.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat ein Notizbuch.", //has a notebook.", 
-    img: `${IMG_URL}notebook.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat einen Apfel.", //has an apple.", 
-    img: `${IMG_URL}apple.jpg`, 
-    correct_response: "a" 
-  },
-  { 
-    sentence: "hat ein Lineal.", //has a ruler.", 
-    img: `${IMG_URL}ruler.jpg`, 
-    correct_response: "a" 
-  },
+export const trueSentences = [
+  "La bandera era una bandera de Alemania.",
+  "La bombilla estaba apagada.",
+  "El bolso era negro.",
+  "El coco esaba partido en trozos.",
+  "La libreta tenía anillas.",
+  "El sushi era de pescado.",
+  "El zumo era de naranja.",
+  "El anillo era de oro.",
+  "La bufanda era de rallas.",
+  "La cama era una cama de matrimonio.",
+  "El cinturón era de cuero.",
+  "El cubo tenía lunares.",
+  "La flor era una rosa.",
+  "La flauta era de madera.",
+  "La galleta tenía chocolate.",
+  "Las gafas eran gafas de ver.",
+  "El perrito caliente tenía un pan alargado.",
+  "La maleta tenía ruedas.",
+  "La moneda era una moneda de 5 céntimos.",
+  "El pan estaba cortado.",
+  "El pimiento era amarillo.",
+  "El queso tenía agujeros.",
+  "La vela era roja.",
+  "La copa era una copa de vino tinto.",
+  "El móvil tenía aplicaciones instaladas.",
+  "La sudadera tenía capucha.",
+  "Las botas tenían cordones.",
+  "El monopatín tenía ruedas.",
+  "La bolsa era de papel.",
+  "Los auriculares tenían cables.",
+  "El violín estaba en una funda.",
+  "El sombrero era marrón.",
+  "La raqueta era una raqueta de tenis.",
+  "La pizza tenía tomate.",
+  "La pelota era una pelota de baloncesto.",
+  "La patata tenía piel.",
+  "La manguera estaba enrollada.",
+  "El sandwich tenía forma cuadrada.",
+  "Las chanclas tenían dibujos de flores.",
+  "La zanahoria era naranja.",
+  "La falda era blanca.",
+  "El casco era un casco de bicicleta.",
+  "El altavoz estaba de pie.",
+  "El cigarro estaba intacto.",
+  "El peso marcaba 0.",
+  "En la bañera había una toalla.",
+  "El hilo era de color azul.",
+  "El jabón era jabón en pastilla.",
 ];
 
-export const incorrectObjects = [
-  "hat eine Lampe.", //has a lamp.",
-  "hat einen Teppich.", //has a rug.",
-  "hat einen Kühlschrank.", //has a fridge.",
-  "hat eine Pfanne.", //has a frying pan.",
-  "hat ein Kissen.", //has a pillow.",
-  "hat einen Käfig.", //has a cage.",
-  "hat eine Leiter.", //has a ladder.",
-  "hat einen Stock.", //has a cane.",
-  "hat eine Flasche.", //has a bottle.",
-  "hat einen Ventilator.", //has a fan.",
-  "hat einen Koffer.", //has a suitcase.",
-  "hat einen Drucker.", //has a printer.",
-  "hat eine Geldbörse.", //has a wallet.",
-  "hat eine Taschenlampe.", //has a flashlight.",
-  "hat eine Krawatte.", //has a tie.",
-  "hat ein Bügeleisen.", //has an iron.",
-  "hat einen Helm.", //has a helmet.",
-  "hat einen Rucksack.", //has a backpack.",
-  "hat einen Spiegel.", //has a mirror.",
-  "hat einen Hefter.", //has a stapler.",
-  "hat ein Vorhängeschloss.", //has a lock.",
-  "hat einen Besen.", //has a broom.",
-  "hat ein Auto.", //has a car.",
-  "hat eine Schaufel.", //has a shovel.",
-  "hat eine Karte.", //has a map.",
+export const falseSentences = [
+  "La bandera era una bandera de Francia.",
+  "La bombilla tenía el cristal roto.",
+  "El bolso era gris.",
+  "El coco estaba entero.",
+  "La libreta tenía separadores.",
+  "El sushi era de verdura.",
+  "El zumo era de melocotón.",
+  "El anillo era de plata.",
+  "La bufanda era beige.",
+  "La cama era una cama individual.",
+  "El cinturón era de tela.",
+  "El cubo tenía cuadros.",
+  "La flor era una margarita.",
+  "La flauta era de plástico.",
+  "La galleta tenía crema.",
+  "Las gafas eran gafas de sol.",
+  "El perrito caliente tenía ketchup.",
+  "La maleta tenía pegatinas.",
+  "La moneda era una moneda de 2 céntimos.",
+  "El pan era redondo.",
+  "El pimiento era verde.",
+  "El queso era un queso de untar.",
+  "La vela era morada.",
+  "La copa era una copa de vino blanco.",
+  "El móvil tenía un fondo de pantalla de un gato.",
+  "La sudadera tenía botones.",
+  "Las botas tenían velcro.",
+  "El monopatín era eléctrico.",
+  "La bolsa era de plástico.",
+  "Los auriculares eran inalámbricos.",
+  "El violín estaba partido por la mitad.",
+  "El sombrero era de paja.",
+  "La raqueta era una raqueta de pádel.",
+  "La pizza tenía carne.",
+  "La pelota era una pelota de fútbol.",
+  "La patata estaba pelada.",
+  "La manguera estaba enchufada.",
+  "El sandwich tenía forma de triángulo.",
+  "Las chanclas tenáin dibujos de coches.",
+  "La zanahoria estaba rallada.",
+  "La falda tenía lentejuelas.",
+  "El casco era un casco de obra.",
+  "El altavoz estaba tumbado.",
+  "El cigarro estaba mojado.",
+  "El peso marcaba 100.",
+  "En la bañera había un bote de champú.",
+  "El hilo era de color burdeos.",
+  "El jabón era jabón líquido.",
+];
+
+export const objectsName = [
+  "bandera",
+  "bombilla",
+  "bolso",
+  "coco",
+  "libreta",
+  "sushi",
+  "zumo",
+  "anillo",
+  "bufanda",
+  "cama",
+  "cinturón",
+  "cubo",
+  "flor",
+  "flauta",
+  "galleta",
+  "gafas",
+  "perrito caliente",
+  "maleta",
+  "moneda",
+  "pan",
+  "pimiento",
+  "queso",
+  "vela",
+  "copa",
+  "móvil",
+  "sudadera",
+  "botas",
+  "monopatín",
+  "bolsa",
+  "auriculares",
+  "violín",
+  "sombrero",
+  "raqueta",
+  "pizza",
+  "pelota",
+  "patata",
+  "manguera",
+  "sandwich",
+  "chanclas",
+  "zanahoria",
+  "falda",
+  "casco",
+  "altavoz",
+  "cigarro",
+  "peso",
+  "bañera",
+  "hilo",
+  "jabón",
 ];
