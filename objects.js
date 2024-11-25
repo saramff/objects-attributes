@@ -100,7 +100,7 @@ export const falseSentences = [
   "El jabón era jabón líquido.",
 ];
 
-export const objectsName = [
+export const trueObjectsName = [
   "bandera",
   "bombilla",
   "bolso",
@@ -149,4 +149,13 @@ export const objectsName = [
   "bañera",
   "hilo",
   "jabón",
+];
+
+
+export const falseObjectsName = [
+  "patata1",
+  "patata2",
+  "patata3",
+  "patata4",
+  "patata5",
 ];

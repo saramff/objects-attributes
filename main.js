@@ -3,7 +3,7 @@
 //                                                                    //  
 ////////////////////////////////////////////////////////////////////////
 
-import { trueSentences, falseSentences, objectsName } from "./objects.js";
+import { trueSentences, falseSentences, trueObjectsName, falseObjectsName } from "./objects.js";
 
 
 /**************************************************************************************/
@@ -80,6 +80,29 @@ const falseSentencesWithResponse = falseSentencesSlice.map((sentence) => {
 const sentences = [...trueSentencesWithResponse, ...falseSentencesWithResponse];
 shuffle(sentences);
 
+/**************************************************************************************/
+
+const TOTAL_OBJECT_NAMES = 3;
+
+const trueObjectsNameSlice = getRandomSlice(trueObjectsName, TOTAL_OBJECT_NAMES);
+const falseObjectsNameSlice = getRandomSlice(falseObjectsName, TOTAL_OBJECT_NAMES);
+
+const trueObjectsNameWithResponse = trueObjectsNameSlice.map((objName) => {
+  return {
+    name: objName,
+    correct_response: correctKey
+  }
+})
+
+const falseObjectsNameWithResponse = falseObjectsNameSlice.map((objName) => {
+  return {
+    name: objName,
+    correct_response: incorrectKey
+  }
+})
+
+const objectsName = [...trueObjectsNameWithResponse, ...falseObjectsNameWithResponse];
+shuffle(objectsName);
 
 /**************************************************************************************/
 
@@ -371,7 +394,7 @@ timeline.push(test_procedure);
 // timeline.push(tetris);
 
 
-// /**************************************************************************************/
+/**************************************************************************************/
 
 /* Instructions for sentence presentation */
 let instructionsSentencePresentation = {
@@ -426,6 +449,62 @@ let testSentencesProcedure = {
   randomize_order: true, // Randomize sentences order
 };
 timeline.push(testSentencesProcedure);
+
+/**************************************************************************************/
+
+/* Instructions for objects name presentation */
+let instructionsObjectsNamePresentation = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: `
+    <p>Als Nächstes werden Sie eine Reihe von Gesichtern auf dem Bildschirm sehen.</p>
+    </p></p>
+    <p>Wenn Sie das Gesicht zuvor gesehen haben, drücken Sie '${correctKey.toUpperCase()}' (ja).</p>
+    <p>Wenn Sie das Gesicht nicht gesehen haben, drücken Sie '${incorrectKey.toUpperCase()}' (nein).</p>
+    <p>Drücken Sie eine beliebige Taste, um zu beginnen.<p>
+  `,
+  post_trial_gap: 500,
+};
+timeline.push(instructionsObjectsNamePresentation);
+
+/* Create stimuli array for objects name presentation */
+let objectsNameRecognitionStimuli = objectsName.map((objName) => {
+  return {
+    stimulus: `
+      <h3 class="sentence">${objName.name}</h3>
+      <div class="keys">
+        <p class="${correctKey === 'a' ? 'left' : 'right'}">JA</p>
+        <p class="${correctKey === 'a' ? 'right' : 'left'}">NEIN</p>
+      </div>
+    `,
+    correct_response: objName.correct_response
+  };
+});
+
+/* Objects name presentation trial */
+let testObjectsName = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: jsPsych.timelineVariable("stimulus"),
+  choices: ['a', 'l'],
+  data: {
+    task: "response objects name test",
+    correct_response: jsPsych.timelineVariable("correct_response"),
+  },
+  on_finish: function (data) {
+    data.correct = jsPsych.pluginAPI.compareKeys(
+      data.response,
+      data.correct_response
+    );
+    data.correct_response_meaning = correctKey === data.correct_response ? "YES" : "NO";
+  },
+};
+
+/* Test procedure: fixation + objects name presentation */
+let testObjectsNameProcedure = {
+  timeline: [fixation, testObjectsName],
+  timeline_variables: objectsNameRecognitionStimuli,
+  randomize_order: true, // Randomize objects name order
+};
+timeline.push(testObjectsNameProcedure);
 
 
 // /**************************************************************************************/
