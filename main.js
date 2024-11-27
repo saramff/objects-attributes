@@ -25,7 +25,7 @@ if (randomNumber < 0.5) {
 
 const OBJECTS_URL =
   "https://raw.githubusercontent.com/saramff/objects-attributes-images/refs/heads/master";
-const TOTAL_IMAGES = 5;
+const TOTAL_IMAGES = 192;
 
 // Create pictures arrays for men and women images
 const objectsImages = Array.from(
@@ -45,7 +45,7 @@ shuffle(objectsImages);
 
 /**************************************************************************************/
 
-const TOTAL_SENTENCES = 3;
+const TOTAL_SENTENCES = 48;
 
 // Create function to get a new array with a random slice from other array
 function getRandomSlice(array, sliceSize) {
@@ -82,7 +82,7 @@ shuffle(sentences);
 
 /**************************************************************************************/
 
-const TOTAL_OBJECT_NAMES = 3;
+const TOTAL_OBJECT_NAMES = 48;
 
 const trueObjectsNameSlice = getRandomSlice(trueObjectsName, TOTAL_OBJECT_NAMES);
 const falseObjectsNameSlice = getRandomSlice(falseObjectsName, TOTAL_OBJECT_NAMES);
@@ -268,7 +268,7 @@ let test = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: jsPsych.timelineVariable("stimulus"),
   choices: "NO_KEYS", // Prevent key press
-  trial_duration: 1000, // Display each image for 1 second
+  trial_duration: 2000, // Display each image for 2 second
   post_trial_gap: 500
 };
 
