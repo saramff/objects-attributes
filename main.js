@@ -296,7 +296,7 @@ let instructionsSentencePresentation = {
     </p>Zum Beispiel: Wenn Sie zuvor das Bild einer offenen Kiste gesehen haben und den Satz sehen: "Die Kiste war geschlossen", sollten Sie "NEIN" drücken.</p>
     <br />
     <div>
-      <img src='https://raw.githubusercontent.com/saramff/face-recognition-images/refs/heads/master/Example/Ana.jpg'  class="img-instructions" />
+      <img src='https://raw.githubusercontent.com/saramff/objects-attributes-images/refs/heads/master/Caja.jpg'  class="img-instructions" />
     </div>
     <br />
     <p>Drücken Sie eine beliebige Taste, um zu beginnen.<p>
