@@ -1,103 +1,196 @@
-export const trueSentences = [
-  "La bandera era una bandera de Alemania.",
-  "La bombilla estaba apagada.",
-  "El bolso era negro.",
-  "El coco esaba partido en trozos.",
-  "La libreta tenía anillas.",
-  "El sushi era de pescado.",
-  "El zumo era de naranja.",
-  "El anillo era de oro.",
-  "La bufanda era de rallas.",
-  "La cama era una cama de matrimonio.",
-  "El cinturón era de cuero.",
-  "El cubo tenía lunares.",
-  "La flor era una rosa.",
-  "La flauta era de madera.",
-  "La galleta tenía chocolate.",
-  "Las gafas eran gafas de ver.",
-  "El perrito caliente tenía un pan alargado.",
-  "La maleta tenía ruedas.",
-  "La moneda era una moneda de 5 céntimos.",
-  "El pan estaba cortado.",
-  "El pimiento era amarillo.",
-  "El queso tenía agujeros.",
-  "La vela era roja.",
-  "La copa era una copa de vino tinto.",
-  "El móvil tenía aplicaciones instaladas.",
-  "La sudadera tenía capucha.",
-  "Las botas tenían cordones.",
-  "El monopatín tenía ruedas.",
-  "La bolsa era de papel.",
-  "Los auriculares tenían cables.",
-  "El violín estaba en una funda.",
-  "El sombrero era marrón.",
-  "La raqueta era una raqueta de tenis.",
-  "La pizza tenía tomate.",
-  "La pelota era una pelota de baloncesto.",
-  "La patata tenía piel.",
-  "La manguera estaba enrollada.",
-  "El sandwich tenía forma cuadrada.",
-  "Las chanclas tenían dibujos de flores.",
-  "La zanahoria era naranja.",
-  "La falda era blanca.",
-  "El casco era un casco de bicicleta.",
-  "El altavoz estaba de pie.",
-  "El cigarro estaba intacto.",
-  "El peso marcaba 0.",
-  "En la bañera había una toalla.",
-  "El hilo era de color azul.",
-  "El jabón era jabón en pastilla.",
-];
-
-export const falseSentences = [
-  "La bandera era una bandera de Francia.",
-  "La bombilla tenía el cristal roto.",
-  "El bolso era gris.",
-  "El coco estaba entero.",
-  "La libreta tenía separadores.",
-  "El sushi era de verdura.",
-  "El zumo era de melocotón.",
-  "El anillo era de plata.",
-  "La bufanda era beige.",
-  "La cama era una cama individual.",
-  "El cinturón era de tela.",
-  "El cubo tenía cuadros.",
-  "La flor era una margarita.",
-  "La flauta era de plástico.",
-  "La galleta tenía crema.",
-  "Las gafas eran gafas de sol.",
-  "El perrito caliente tenía ketchup.",
-  "La maleta tenía pegatinas.",
-  "La moneda era una moneda de 2 céntimos.",
-  "El pan era redondo.",
-  "El pimiento era verde.",
-  "El queso era un queso de untar.",
-  "La vela era morada.",
-  "La copa era una copa de vino blanco.",
-  "El móvil tenía un fondo de pantalla de un gato.",
-  "La sudadera tenía botones.",
-  "Las botas tenían velcro.",
-  "El monopatín era eléctrico.",
-  "La bolsa era de plástico.",
-  "Los auriculares eran inalámbricos.",
-  "El violín estaba partido por la mitad.",
-  "El sombrero era de paja.",
-  "La raqueta era una raqueta de pádel.",
-  "La pizza tenía carne.",
-  "La pelota era una pelota de fútbol.",
-  "La patata estaba pelada.",
-  "La manguera estaba enchufada.",
-  "El sandwich tenía forma de triángulo.",
-  "Las chanclas tenáin dibujos de coches.",
-  "La zanahoria estaba rallada.",
-  "La falda tenía lentejuelas.",
-  "El casco era un casco de obra.",
-  "El altavoz estaba tumbado.",
-  "El cigarro estaba mojado.",
-  "El peso marcaba 100.",
-  "En la bañera había un bote de champú.",
-  "El hilo era de color burdeos.",
-  "El jabón era jabón líquido.",
+export const sentences = [
+  {
+    true: "La bandera era una bandera de Alemania.",
+    false: "La bandera era una bandera de Francia.",
+  },
+  {
+    true: "La bombilla estaba apagada.",
+    false: "La bombilla tenía el cristal roto.",
+  },
+  {
+    true: "El bolso era negro.",
+    false: "El bolso era gris.",
+  },
+  {
+    true: "El coco esaba partido en trozos.",
+    false: "El coco estaba entero.",
+  },
+  {
+    true: "La libreta tenía anillas.",
+    false: "La libreta tenía separadores.",
+  },
+  {
+    true: "El sushi era de pescado.",
+    false: "El sushi era de verdura.",
+  },
+  {
+    true: "El zumo era de naranja.",
+    false: "El zumo era de melocotón.",
+  },
+  {
+    true: "El anillo era de oro.",
+    false: "El anillo era de plata.",
+  },
+  {
+    true: "La bufanda era de rallas.",
+    false: "La bufanda era beige.",
+  },
+  {
+    true: "La cama era una cama de matrimonio.",
+    false: "La cama era una cama individual.",
+  },
+  {
+    true: "El cinturón era de cuero.",
+    false: "El cinturón era de tela.",
+  },
+  {
+    true: "El cubo tenía lunares.",
+    false: "El cubo tenía cuadros.",
+  },
+  {
+    true: "La flor era una rosa.",
+    false: "La flor era una margarita.",
+  },
+  {
+    true: "La flauta era de madera.",
+    false: "La flauta era de plástico.",
+  },
+  {
+    true: "La galleta tenía chocolate.",
+    false: "La galleta tenía crema.",
+  },
+  {
+    true: "Las gafas eran gafas de ver.",
+    false: "Las gafas eran gafas de sol.",
+  },
+  {
+    true: "El perrito caliente tenía un pan alargado.",
+    false: "El perrito caliente tenía ketchup.",
+  },
+  {
+    true: "La maleta tenía ruedas.",
+    false: "La maleta tenía pegatinas.",
+  },
+  {
+    true: "La moneda era una moneda de 5 céntimos.",
+    false: "La moneda era una moneda de 2 céntimos.",
+  },
+  {
+    true: "El pan estaba cortado.",
+    false: "El pan era redondo.",
+  },
+  {
+    true: "El pimiento era amarillo.",
+    false: "El pimiento era verde.",
+  },
+  {
+    true: "El queso tenía agujeros.",
+    false: "El queso era un queso de untar.",
+  },
+  {
+    true: "La vela era roja.",
+    false: "La vela era morada.",
+  },
+  {
+    true: "La copa era una copa de vino tinto.",
+    false: "La copa era una copa de vino blanco.",
+  },
+  {
+    true: "El móvil tenía aplicaciones instaladas.",
+    false: "El móvil tenía un fondo de pantalla de un gato.",
+  },
+  {
+    true: "La sudadera tenía capucha.",
+    false: "La sudadera tenía botones.",
+  },
+  {
+    true: "Las botas tenían cordones.",
+    false: "Las botas tenían velcro.",
+  },
+  {
+    true: "El monopatín tenía ruedas.",
+    false: "El monopatín era eléctrico.",
+  },
+  {
+    true: "La bolsa era de papel.",
+    false: "La bolsa era de plástico.",
+  },
+  {
+    true: "Los auriculares tenían cables.",
+    false: "Los auriculares eran inalámbricos.",
+  },
+  {
+    true: "El violín estaba en una funda.",
+    false: "El violín estaba partido por la mitad.",
+  },
+  {
+    true: "El sombrero era marrón.",
+    false: "El sombrero era de paja.",
+  },
+  {
+    true: "La raqueta era una raqueta de tenis.",
+    false: "La raqueta era una raqueta de pádel.",
+  },
+  {
+    true: "La pizza tenía tomate.",
+    false: "La pizza tenía carne.",
+  },
+  {
+    true: "La pelota era una pelota de baloncesto.",
+    false: "La pelota era una pelota de fútbol.",
+  },
+  {
+    true: "La patata tenía piel.",
+    false: "La patata estaba pelada.",
+  },
+  {
+    true: "La manguera estaba enrollada.",
+    false: "La manguera estaba enchufada.",
+  },
+  {
+    true: "El sandwich tenía forma cuadrada.",
+    false: "El sandwich tenía forma de triángulo.",
+  },
+  {
+    true: "Las chanclas tenían dibujos de flores.",
+    false: "Las chanclas tenáin dibujos de coches.",
+  },
+  {
+    true: "La zanahoria era naranja.",
+    false: "La zanahoria estaba rallada.",
+  },
+  {
+    true: "La falda era blanca.",
+    false: "La falda tenía lentejuelas.",
+  },
+  {
+    true: "El casco era un casco de bicicleta.",
+    false: "El casco era un casco de obra.",
+  },
+  {
+    true: "El altavoz estaba de pie.",
+    false: "El altavoz estaba tumbado.",
+  },
+  {
+    true: "El cigarro estaba intacto.",
+    false: "El cigarro estaba mojado.",
+  },
+  {
+    true: "El peso marcaba 0.",
+    false: "El peso marcaba 100.",
+  },
+  {
+    true: "En la bañera había una toalla.",
+    false: "En la bañera había un bote de champú.",
+  },
+  {
+    true: "El hilo era de color azul.",
+    false: "El hilo era de color burdeos.",
+  },
+  {
+    true: "El jabón era jabón en pastilla.",
+    false: "El jabón era jabón líquido.",
+  },
 ];
 
 export const trueObjectsName = [
@@ -151,7 +244,6 @@ export const trueObjectsName = [
   "jabón",
 ];
 
-
 export const falseObjectsName = [
   "bellota",
   "toallero",
@@ -201,5 +293,4 @@ export const falseObjectsName = [
   "collar",
   "cargador",
   "tulipán",
-  
 ];

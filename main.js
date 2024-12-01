@@ -3,7 +3,7 @@
 //                                                                    //  
 ////////////////////////////////////////////////////////////////////////
 
-import { trueSentences, falseSentences, trueObjectsName, falseObjectsName } from "./objects.js";
+import { sentences, trueObjectsName, falseObjectsName } from "./objects.js";
 
 
 /**************************************************************************************/
@@ -25,7 +25,8 @@ if (randomNumber < 0.5) {
 
 const OBJECTS_URL =
   "https://raw.githubusercontent.com/saramff/objects-attributes-images/refs/heads/master";
-const TOTAL_IMAGES = 192;
+  // const TOTAL_IMAGES = 192;
+  const TOTAL_IMAGES = 6;
 
 // Create pictures arrays for men and women images
 const objectsImages = Array.from(
@@ -45,7 +46,7 @@ shuffle(objectsImages);
 
 /**************************************************************************************/
 
-const TOTAL_SENTENCES = 48;
+const TOTAL_SENTENCES = 6;
 
 // Create function to get a new array with a random slice from other array
 function getRandomSlice(array, sliceSize) {
@@ -60,29 +61,23 @@ function getRandomSlice(array, sliceSize) {
   return arraySlice;
 }
 
-const trueSentencesSlice = getRandomSlice(trueSentences, TOTAL_SENTENCES);
-const falseSentencesSlice = getRandomSlice(falseSentences, TOTAL_SENTENCES);
-
-const trueSentencesWithResponse = trueSentencesSlice.map((sentence) => {
-  return {
-    sentence: sentence,
-    correct_response: correctKey
-  }
-})
-
-const falseSentencesWithResponse = falseSentencesSlice.map((sentence) => {
-  return {
-    sentence: sentence,
-    correct_response: incorrectKey
-  }
-})
-
-const sentences = [...trueSentencesWithResponse, ...falseSentencesWithResponse];
 shuffle(sentences);
+const sentencesSlice = getRandomSlice(sentences, TOTAL_SENTENCES);
+
+// New Array with first half with TRUE sentences and second half with FALSE sentences
+const sentencesWithResponse = sentencesSlice.map((sentence, index) => {
+  return {
+    sentence: index < TOTAL_SENTENCES / 2 ? sentence.true : sentence.false,
+    correct_response: index < TOTAL_SENTENCES / 2 ? correctKey : incorrectKey
+  }
+})
+
+// Shuffle sentences with response
+shuffle(sentencesWithResponse);
 
 /**************************************************************************************/
 
-const TOTAL_OBJECT_NAMES = 48;
+const TOTAL_OBJECT_NAMES = 6;
 
 const trueObjectsNameSlice = getRandomSlice(trueObjectsName, TOTAL_OBJECT_NAMES);
 const falseObjectsNameSlice = getRandomSlice(falseObjectsName, TOTAL_OBJECT_NAMES);
@@ -306,7 +301,7 @@ let instructionsSentencePresentation = {
 timeline.push(instructionsSentencePresentation);
 
 /* Create stimuli array for sentence presentation */
-let sentenceRecognitionStimuli = sentences.map((sentence) => {
+let sentenceRecognitionStimuli = sentencesWithResponse.map((sentence) => {
   return {
     stimulus: `
       <h3 class="sentence">${sentence.sentence}</h3>
@@ -492,3 +487,6 @@ timeline.push(testObjectsNameProcedure);
 
 /* Run the experiment */
 jsPsych.run(timeline);
+
+// Uncomment to see the results on the console (for debugging)
+// console.log(jsPsych.data.get());
