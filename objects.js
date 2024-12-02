@@ -279,7 +279,7 @@ export const falseObjectsName = [
   "Trophäe",
   "Flaschenkorken",
   "Schüssel",
-  "Zeitungshalter ",
+  "Ständer",
   "Kaffee",
   "Wischmopp",
   "Aschenbecher",
