@@ -25,8 +25,7 @@ if (randomNumber < 0.5) {
 
 const OBJECTS_URL =
   "https://raw.githubusercontent.com/saramff/objects-attributes-images/refs/heads/master";
-  // const TOTAL_IMAGES = 192;
-  const TOTAL_IMAGES = 6;
+const TOTAL_IMAGES = 192;  
 
 // Create pictures arrays for men and women images
 const objectsImages = Array.from(
@@ -46,7 +45,7 @@ shuffle(objectsImages);
 
 /**************************************************************************************/
 
-const TOTAL_SENTENCES = 6;
+const TOTAL_SENTENCES = 48;
 
 // Create function to get a new array with a random slice from other array
 function getRandomSlice(array, sliceSize) {
@@ -77,10 +76,10 @@ shuffle(sentencesWithResponse);
 
 /**************************************************************************************/
 
-const TOTAL_OBJECT_NAMES = 6;
+const OBJECTS_PER_CATEGORY = 48;
 
-const trueObjectsNameSlice = getRandomSlice(trueObjectsName, TOTAL_OBJECT_NAMES);
-const falseObjectsNameSlice = getRandomSlice(falseObjectsName, TOTAL_OBJECT_NAMES);
+const trueObjectsNameSlice = getRandomSlice(trueObjectsName, OBJECTS_PER_CATEGORY);
+const falseObjectsNameSlice = getRandomSlice(falseObjectsName, OBJECTS_PER_CATEGORY);
 
 const trueObjectsNameWithResponse = trueObjectsNameSlice.map((objName) => {
   return {
@@ -240,10 +239,10 @@ timeline.push(welcome);
 let instructions = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: `
-    <p>In diesem Experiment werden nacheinander automatisch verschiedene Objekte angezeigt.</p>
-    <p>Bitte achten Sie genau auf jedes Objekt und dessen Aussehen.</p>
-    <p>Die Objekte erscheinen von selbst, und Sie brauchen nichts weiter zu tun, außer aufmerksam zu sein.</p>
-    <p>Drücken Sie eine beliebige Taste, um zu beginnen, wenn Sie bereit sind.</p>
+    <p>In diesem Experiment werden automatisch nacheinander verschiedene Objekte angezeigt.</p>
+    <p>Bitte achten Sie sorgfältig auf jedes Objekt und dessen Aussehen.</p>
+    <p>Die Objekte erscheinen von selbst. Sie müssen nichts weiter zu tun, außer aufmerksam zu sorgfältig.</p>
+    <p>Wenn Sie bereit sind, drücken Sie eine beliebige Taste, um zu starten.</p>
   `,
   post_trial_gap: 500,
 };
@@ -283,7 +282,7 @@ let instructionsSentencePresentation = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: `
     <p>Jetzt sehen Sie eine Reihe von Sätzen auf dem Bildschirm.</p>
-    </p>Jeder Satz bezieht sich auf eine Eigenschaft der Objekte, die zuvor gezeigt wurden.</p>
+    </p>Jeder Satz beschreibt eine Eigenschaft der zuvor gezeigten Objekte.</p>
     </p></p>
     <p>Wenn der Satz wahr ist, drücken Sie '${correctKey.toUpperCase()}' (ja).</p>
     <p>Wenn der Satz falsch ist, drücken Sie '${incorrectKey.toUpperCase()}' (nein).</p>
@@ -432,49 +431,49 @@ timeline.push(testObjectsNameProcedure);
 // /**************************************************************************************/
 
 
-// // Generate a random subject ID with 15 characters
-// var subject_id = jsPsych.randomization.randomID(15);
-// jsPsych.data.addProperties({
-//   subject: subject_id,
-// });
+// Generate a random subject ID with 15 characters
+var subject_id = jsPsych.randomization.randomID(15);
+jsPsych.data.addProperties({
+  subject: subject_id,
+});
 
 
-// function saveData(name, data){
-//   console.log("Función saveData llamada");
-//   console.log("Guardando datos:", name, data);
+function saveData(name, data){
+  console.log("Función saveData llamada");
+  console.log("Guardando datos:", name, data);
 
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('POST', 'write_data.php'); 
-//   xhr.setRequestHeader('Content-Type', 'application/json');
-//   xhr.send(JSON.stringify({filename: name, filedata: data}));
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'write_data.php'); 
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(JSON.stringify({filename: name, filedata: data}));
 
-//   console.log("Datos enviados");
-// };
+  console.log("Datos enviados");
+};
 
-// var save_data_block = {
-//   type: jsPsychCallFunction,
-//   func: function(){saveData("data/Subject_"+ subject_id, jsPsych.data.get().csv());},
-//   timing_post_trial: 200
-// };
+var save_data_block = {
+  type: jsPsychCallFunction,
+  func: function(){saveData("data/Subject_"+ subject_id, jsPsych.data.get().csv());},
+  timing_post_trial: 200
+};
 
-// timeline.push(save_data_block)
+timeline.push(save_data_block)
 
 
-// var verguetungsfrage = {
-//   type: jsPsychHtmlButtonResponse,
-//   stimulus: '<div class="custom-style">Sie haben das Ende der Studie erreicht. Vielen Dank, dass Sie teilgenommen haben. Welche Verg&uumltung m&oumlchten Sie f&uumlr dieses Experiment?</div>',
-//   choices: ['<div style="font-size:24px;">VP-Stunde (1)', '<div style="font-size:24px;">Gewinnspiel</div>'],
-//   on_finish: function(data) {
-//     if(data.response == 0) {
-//         window.location.href = 'verguetung_b.html';
-//     } else {
-//         window.location.href = 'verguetung_a.html';
-//     }
-//   }
-// };
+var verguetungsfrage = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<div class="custom-style">Sie haben das Ende der Studie erreicht. Vielen Dank, dass Sie teilgenommen haben. Welche Verg&uumltung m&oumlchten Sie f&uumlr dieses Experiment?</div>',
+  choices: ['<div style="font-size:24px;">VP-Stunde (1)', '<div style="font-size:24px;">Gewinnspiel</div>'],
+  on_finish: function(data) {
+    if(data.response == 0) {
+        window.location.href = 'verguetung_b.html';
+    } else {
+        window.location.href = 'verguetung_a.html';
+    }
+  }
+};
 
  
-// timeline.push(verguetungsfrage);
+timeline.push(verguetungsfrage);
 
 
 //var html_block_bezahlung = {
