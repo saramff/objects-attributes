@@ -254,7 +254,7 @@ export const falseObjectsName = [
   "Schallplatte",
   "Buch",
   "Salat",
-  "teclado",
+  "Computertastatur",
   "Chipstüte",
   "Sparbüchse",
   "Stecker",
